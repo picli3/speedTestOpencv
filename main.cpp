@@ -2,7 +2,7 @@
 * @Author: maykolrey
 * @Date:   2019-11-29 08:37:59
 * @Last Modified by:   Maykol Rey
-* @Last Modified time: 2019-11-29 11:37:39
+* @Last Modified time: 2019-11-29 11:54:43
 */
 
 #include "opencv2/opencv.hpp"
@@ -38,6 +38,7 @@ int main(){
   float acu=0;
   float averageFPS=0;
   int count=0;
+  int c=0;
   do{
 
     tm.start();//arranco el contador de tiempo del reloj
@@ -61,8 +62,12 @@ int main(){
       break;
  
     // Display the resulting frame
-    imshow( "Frame", otra );
+    if(c==3){
+      imshow( "Frame", otra );
+      c=0;
+    }
     
+    c++;
     tm.stop();
     cout << "FPS = " << 1000/tm.getTimeMilli() <<endl;
     // Press  ESC on keyboard to exit

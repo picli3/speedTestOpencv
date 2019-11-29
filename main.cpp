@@ -1,8 +1,8 @@
 /*
 * @Author: maykolrey
 * @Date:   2019-11-29 08:37:59
-* @Last Modified by:   maykolrey
-* @Last Modified time: 2019-11-29 08:41:17
+* @Last Modified by:   Maykol Rey
+* @Last Modified time: 2019-11-29 09:25:04
 */
 
 #include "opencv2/opencv.hpp"
@@ -22,9 +22,12 @@ int main(){
     cout << "Error opening video stream or file" << endl;
     return -1;
   }
-     
+   
+  cv::TickMeter tm;   
   while(1){
- 
+
+    tm.start();//arranco el contador de tiempo del reloj
+    
     Mat frame;
     // Capture frame-by-frame
     cap >> frame;
@@ -40,6 +43,11 @@ int main(){
     char c=(char)waitKey(25);
     if(c==27)
       break;
+  
+
+    tm.stop();
+    cout << "FPS = " << 1000/tm.getTimeMilli() <<endl;
+
   }
   
   // When everything done, release the video capture object

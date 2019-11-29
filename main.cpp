@@ -2,7 +2,7 @@
 * @Author: maykolrey
 * @Date:   2019-11-29 08:37:59
 * @Last Modified by:   Maykol Rey
-* @Last Modified time: 2019-11-29 11:00:51
+* @Last Modified time: 2019-11-29 11:12:07
 */
 
 #include "opencv2/opencv.hpp"
@@ -38,7 +38,8 @@ int main(){
     // Capture frame-by-frame
     cap >> frame;
     
-    otra = frame (myROI);
+    cv::resize(frame, otra, Size(300,300));
+    //otra = frame (myROI);
 
     // If the frame is empty, break immediately
     if (frame.empty())

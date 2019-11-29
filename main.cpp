@@ -2,7 +2,7 @@
 * @Author: maykolrey
 * @Date:   2019-11-29 08:37:59
 * @Last Modified by:   Maykol Rey
-* @Last Modified time: 2019-11-29 09:25:04
+* @Last Modified time: 2019-11-29 09:37:09
 */
 
 #include "opencv2/opencv.hpp"
@@ -38,15 +38,16 @@ int main(){
  
     // Display the resulting frame
     imshow( "Frame", frame );
- 
+    
+    tm.stop();
+    cout << "FPS = " << 1000/tm.getTimeMilli() <<endl;
     // Press  ESC on keyboard to exit
     char c=(char)waitKey(25);
     if(c==27)
       break;
   
 
-    tm.stop();
-    cout << "FPS = " << 1000/tm.getTimeMilli() <<endl;
+
 
   }
   

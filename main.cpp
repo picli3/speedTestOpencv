@@ -2,12 +2,16 @@
 * @Author: maykolrey
 * @Date:   2019-11-29 08:37:59
 * @Last Modified by:   Maykol Rey
-* @Last Modified time: 2019-11-29 11:12:07
+* @Last Modified time: 2019-11-29 11:37:39
 */
 
 #include "opencv2/opencv.hpp"
 #include <iostream>
- 
+
+#include <opencv2/cudaobjdetect.hpp>
+#include <opencv2/cudaimgproc.hpp>
+#include <opencv2/cudawarping.hpp>
+
 using namespace std;
 using namespace cv;
  
@@ -18,6 +22,10 @@ int main(){
   VideoCapture cap(0); 
 
   Mat otra;
+  cuda::GpuMat _resized_gpu;
+  cuda::GpuMat _facesBuf_gpu;
+  cuda::GpuMat _frame_gpu;
+
   Rect myROI(10, 10, 100, 100);
 
   // Check if camera opened successfully
@@ -38,7 +46,14 @@ int main(){
     // Capture frame-by-frame
     cap >> frame;
     
-    cv::resize(frame, otra, Size(300,300));
+    _frame_gpu.upload(frame);
+
+    cuda::resize(_frame_gpu, _resized_gpu, Size(300,300));
+
+    _resized_gpu.download(otra);
+
+
+    //cv::resize(frame, otra, Size(300,300));
     //otra = frame (myROI);
 
     // If the frame is empty, break immediately

@@ -2,7 +2,7 @@
 * @Author: maykolrey
 * @Date:   2019-11-29 08:37:59
 * @Last Modified by:   Maykol Rey
-* @Last Modified time: 2019-11-29 10:15:45
+* @Last Modified time: 2019-11-29 11:00:51
 */
 
 #include "opencv2/opencv.hpp"
@@ -16,7 +16,10 @@ int main(){
   // Create a VideoCapture object and open the input file
   // If the input is the web camera, pass 0 instead of the video file name
   VideoCapture cap(0); 
-    
+
+  Mat otra;
+  Rect myROI(10, 10, 100, 100);
+
   // Check if camera opened successfully
   if(!cap.isOpened()){
     cout << "Error opening video stream or file" << endl;
@@ -34,13 +37,15 @@ int main(){
     Mat frame;
     // Capture frame-by-frame
     cap >> frame;
-  
+    
+    otra = frame (myROI);
+
     // If the frame is empty, break immediately
     if (frame.empty())
       break;
  
     // Display the resulting frame
-    imshow( "Frame", frame );
+    imshow( "Frame", otra );
     
     tm.stop();
     cout << "FPS = " << 1000/tm.getTimeMilli() <<endl;
@@ -48,16 +53,10 @@ int main(){
     
     acu+=1000/tm.getTimeMilli();
     
-
-
-
-
     tm.reset();
     char c=(char)waitKey(25);
     if(c==27)
       break;
-  
-
 
     count++;
   }while(count<=1000);

@@ -2,7 +2,7 @@
 * @Author: maykolrey
 * @Date:   2019-11-29 08:37:59
 * @Last Modified by:   Maykol Rey
-* @Last Modified time: 2019-11-29 10:11:39
+* @Last Modified time: 2019-11-29 10:15:45
 */
 
 #include "opencv2/opencv.hpp"
@@ -59,8 +59,8 @@ int main(){
   
 
 
-  count++;
-  }while(count==1000);
+    count++;
+  }while(count<=1000);
   
 
   cout << "averageFPS = " << acu/count <<endl;

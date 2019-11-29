@@ -2,7 +2,7 @@
 * @Author: maykolrey
 * @Date:   2019-11-29 08:37:59
 * @Last Modified by:   Maykol Rey
-* @Last Modified time: 2019-11-29 09:37:09
+* @Last Modified time: 2019-11-29 09:39:51
 */
 
 #include "opencv2/opencv.hpp"
@@ -42,6 +42,7 @@ int main(){
     tm.stop();
     cout << "FPS = " << 1000/tm.getTimeMilli() <<endl;
     // Press  ESC on keyboard to exit
+    tm.reset();
     char c=(char)waitKey(25);
     if(c==27)
       break;
